@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "gpt-3-5-turbo-web-backend"
+version = "0.1.0"
+description = ""
+authors = ["Sad Pencil <sadpencil@outlook.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+djangorestframework = "^3.14.0"
+django-polymorphic = "^3.1.0"
+django-crispy-forms = "^2.0"
+urllib3 = "^1.26.14"
+django-cors-headers = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

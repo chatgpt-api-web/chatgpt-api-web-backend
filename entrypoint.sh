@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -e
+
+SOCKET_BIND="0.0.0.0:9000"
+export DJANGO_SUPERUSER_USERNAME="${DJANGO_SUPERUSER_USERNAME:-admin}"
+export DJANGO_SUPERUSER_EMAIL="${DJANGO_SUPERUSER_EMAIL:-admin@example.com}"
+export DJANGO_SUPERUSER_PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-admin}"
+# WWW_ROOT="/www/server/static"
+
+if [ ! -f .initialized ]; then
+#    # https://superuser.com/a/766606
+#    sed -i \
+#        -e 's;^STATIC_ROOT\s*=.*;STATIC_ROOT = '\'"${WWW_ROOT}"\'';' \
+#        -e 's;^DEBUG\s*=.*;DEBUG = True;' \
+#        "./website/settings.py"
+#    # TODO regenerate SECRET_KEY
+#
+#    rm db.sqlite3 || true
+#
+#    python3 manage.py collectstatic --no-input
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 manage.py createsuperuser --no-input
+
+    touch .initialized
+fi
+
+sed -i \
+    -e 's;^socket\s*=.*;socket = '"${SOCKET_BIND}"';' \
+        -e 's;^uid\s*=.*;uid = root;' \
+        -e 's;^gid\s*=.*;gid = root;' \
+    ./uwsgi.ini
+
+exec uwsgi --ini ./uwsgi.ini "$@"
