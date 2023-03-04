@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('backend/admin/', admin.site.urls),
-    path('backend/auth/', include('auth.urls')),
-    path('backend/openai/', include('openai.urls')),
+    path('admin/', admin.site.urls),
+    path('auth/', include('auth.urls')),
+    path('openai/', include('openai.urls')),
 ]
