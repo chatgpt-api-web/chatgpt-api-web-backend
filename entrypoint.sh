@@ -6,12 +6,12 @@ set -e
 : "${DJANGO_SUPERUSER_EMAIL:=admin@example.com}"
 : "${DJANGO_SUPERUSER_PASSWORD:=admin}"
 WWW_ROOT="/www"
-STATIC_ROOT="${WWW_ROOT}/static"
+STATIC_ROOT="${WWW_ROOT}/backend/static"
 
 if [ ! -f .initialized ]; then
     # https://superuser.com/a/766606
     sed -i \
-        -e 's;^STATIC_ROOT\s*=.*;STATIC_ROOT = '\'"${WWW_ROOT}"\'';' \
+        -e 's;^STATIC_ROOT\s*=.*;STATIC_ROOT = '\'"${STATIC_ROOT}"\'';' \
         -e 's;^DEBUG\s*=.*;DEBUG = False;' \
         "./backend/settings.py"
     # TODO regenerate SECRET_KEY in ./backend/settings.py
