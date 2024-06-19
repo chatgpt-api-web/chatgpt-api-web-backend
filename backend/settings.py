@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 OPENAI_KEY: Optional[str] = os.environ.get('OPENAI_KEY', None)
+OPENAI_DOMAIN: Optional[str] = os.environ.get('OPENAI_DOMAIN', 'api.openai.com')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-tw@2kh4^(d#qrh+qw0k9rj$v%c3viu3w&(_wbby!-^q)fp7t^0'

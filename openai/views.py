@@ -16,7 +16,7 @@ class AuthenticatedAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
 
-OpenAIChatGPTAPIEndPoint: str = "https://api.openai.com/v1/chat/completions"
+OpenAIChatGPTAPIEndPoint: str = f"https://{settings.OPENAI_DOMAIN}/v1/chat/completions"
 
 
 class OpenAIChatCompletion(AuthenticatedAPIView):
