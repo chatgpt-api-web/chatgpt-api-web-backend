@@ -40,6 +40,6 @@ class OpenAIChatCompletion(AuthenticatedAPIView):
 
         ret = {
             "status": resp.status,
-            "data": json.loads(resp.data.decode("utf-8")) if resp.status == 200 else None,
+            "data": json.loads(resp.data.decode("utf-8")),
         }
         return JsonResponse(ret)
